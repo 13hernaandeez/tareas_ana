@@ -17,7 +17,7 @@ class DefaultController extends Controller
     {
     	$repository= $this-> getDoctrine()->getRepository('AppBundle:Tarea');
     	$tareas=$repository->findAll();
-    	
+  	
     	return $this->render('default/pantalla_tareas.html.twig', array('tareas'=>$tareas,
     		'mensaje'=>'hola'));
 
@@ -27,9 +27,13 @@ class DefaultController extends Controller
        */
       public function tareaAction($id)
       {
-      $repository= $this-> getDoctrine()->getRepository('AppBundle:Tarea');
-      $tarea=$repository->findOneByid($id);
-    	return $this->render('default/tarea_unica.html.twig', array('tarea'=>$tarea));
+      	$repository= $this-> getDoctrine()->getRepository('AppBundle:Tarea');
+      	$tareas=$repository->findAll();
+      	$url_atras =$this->generateURL('homepage');
+      	$repository= $this-> getDoctrine()->getRepository('AppBundle:Tarea');
+      	$tarea=$repository->findOneByid($id);
+      	return $this->render('default/tarea_unica.html.twig', array('tarea'=>$tarea,
+      		'url_tarea'=>$url_atras));
       }
 
 
