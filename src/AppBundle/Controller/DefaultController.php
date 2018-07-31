@@ -16,7 +16,7 @@ class DefaultController extends Controller
     public function tareasAction(Request $request)
     {
     	$repository= $this-> getDoctrine()->getRepository('AppBundle:Tarea');
-    	$tareas=$repository->findAll();
+    	$tareas=$repository->findAllOrderedBydescripcion();
   	
     	return $this->render('default/pantalla_tareas.html.twig', array('tareas'=>$tareas,
     		'mensaje'=>'hola'));
